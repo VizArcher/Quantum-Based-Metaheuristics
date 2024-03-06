@@ -107,62 +107,6 @@ plt.ylabel("Actual $C_{p}$ [-]",fontsize=20)
 plt.tick_params(axis='both',size=8,labelsize=16, direction='inout')
 plt.show()
 
-
-#------------------------------------------------------------2D Response Surface--------------------------------------------------------------------
-
-# Create a 2D contour plot
-
-'''
-# Generate a grid of r_test_normalized and x_test_normalized values
-r_values = np.linspace(np.min(d_test_normalized), np.max(d_test_normalized), 50)
-
-y_values = np.linspace(np.min(y_test_normalized), np.max(y_test_normalized), 50)
-r_grid, y_grid = np.meshgrid(r_values, y_values)
-X_contour = np.column_stack((r_grid.ravel(),  np.ones_like(r_grid).ravel() * np.mean(x_test_normalized) , y_grid.ravel()))
-
-#x_values = np.linspace(np.min(x_test_normalized), np.max(x_test_normalized), 50)
-#r_grid, x_grid = np.meshgrid(r_values, x_values)
-#X_contour = np.column_stack((r_grid.ravel(), x_grid.ravel(), np.ones_like(r_grid).ravel() * np.mean(y_test_normalized)))
-
-# Make predictions on the contour grid
-contour_pred = sm.predict_values(X_contour)
-
-# Reshape the predictions for contour plotting
-contour_pred = contour_pred.reshape(r_grid.shape)
-'''
-
-# Generate a grid of r_test_normalized, x_test_normalized, and y_test_normalized values
-r_values = np.linspace(np.min(d_test_normalized), np.max(d_test_normalized), 50)
-x_values = np.linspace(np.min(x_test_normalized), np.max(x_test_normalized), 50)
-y_values = np.linspace(np.min(y_test_normalized), np.max(y_test_normalized), 50)
-r_grid, x_grid, y_grid = np.meshgrid(r_values, x_values, y_values)
-X_contour = np.column_stack((r_grid.ravel(), x_grid.ravel(), y_grid.ravel()))
-
-# Make predictions on the contour grid
-contour_pred = sm.predict_values(X_contour)
-
-# Reshape the predictions for contour plotting
-
-contour_pred = contour_pred.reshape(r_grid.shape)
-# Plot the contour along the x-axis (r_grid) and y-axis (y_grid)
-fig = plt.figure(figsize=(6.4,4.8), dpi=100)
-plt.rcParams["font.family"] = "Times New Roman"
-
-cp = plt.contourf(r_grid[0,:,:], y_grid[0,:,:], contour_pred[:,:,0], levels=50, cmap='turbo')
-
-cbar = plt.colorbar(cp, ticks=np.linspace(0, 0.3, 7))
-cbar.ax.tick_params(width=0.5)
-
-plt.xlabel('Dc/D', fontsize=14)
-plt.ylabel('Ly/D', fontsize=14)
-plt.tick_params(axis='both', size=14, direction='inout')
-plt.xticks(fontsize=14)
-plt.yticks(fontsize=14)
-plt.title('2D Contour Plot of Predicted Cp')
-
-plt.show()
-
-
 #--------------------------------------------------------------3D Response Surface-------------------------------------------------------------------
 
 # Create a 3D contour plot
