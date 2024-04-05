@@ -4,7 +4,7 @@ from smt.surrogate_models import IDW
 import pandas as pd
 from sklearn.metrics import r2_score
 
-# Read and prepare the training data
+# Read and prepare training data
 df = pd.read_csv(r"C:\Users\Vishal\Desktop\Fluid Research\Journal_Paper_Optimization_Codes_And_Data\train3.csv")
 obj = df['m']
 obj = np.array(obj)
